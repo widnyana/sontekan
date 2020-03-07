@@ -6,6 +6,8 @@
 
 ### Cause:
 
+`--ingress-class` was set differently, led to:
+
 - ConfigMap is missing.
 - RBAC was not found.
 
@@ -20,9 +22,13 @@ E0306 18:59:27.653349       1 leaderelection.go:324] error retrieving resource l
 
 ### Solution:
 
-- Create `ConfigMaps`
-- Create `ClusterRole`
-- Create `ClusterRoleBinding`
+when you change `ingress-class`, make sure to:
+
+- Create new `ConfigMaps`
+- Create new `ClusterRole`
+- Create new `ClusterRoleBinding`
+
+with correct name
 
 please see: kong's `deploy/single/all-in-one-postgres.yaml` file for detail.
 
